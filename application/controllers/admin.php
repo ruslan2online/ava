@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller  {
 	public $data;
 	public $initialization;
 	function __construct()

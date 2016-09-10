@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="http://www.avalab.ru" target="_blank">AVA CMS 2</a>
+			<a class="navbar-brand" href="http://www.avalab.ru" target="_blank">AVA CMS 5</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
