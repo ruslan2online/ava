@@ -1,0 +1,9 @@
+#DirectoryIndex index.php
+AddDefaultCharset UTF-8
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond $1 !^(index\.php|design|robots\.txt|bootstrap)
+RewriteRule ^(.*)$ /index.php?/$1 [L]
