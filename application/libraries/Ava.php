@@ -279,11 +279,11 @@ class Ava {
     }
     private function printElm($s,$h=false){
         if(is_array($s)){
-            if($h) echo "<b>[".$h." /]</b>";
+            if($h) echo "<p><b>[".$h." /]</b>";
             echo "<pre>";
             print_r($s);
             echo "</pre>";
-            if($h) echo "<b>[/".$h."]</b>";
+            if($h) echo "<b>[/".$h."]</b></p>";
         }
         else
             echo "<p>".$s."</p>";
