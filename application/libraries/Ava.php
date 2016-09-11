@@ -138,6 +138,8 @@ class Ava {
                 $fields[]=$v2['Field'];
             }
             $f_name_buffer='';
+            $this->printElm($v['fields'],"v[\'fields\']");
+            $this->printElm($fields,"fields");
             foreach($v['fields'] as $f_name=>$f) {
                 //предыдущее поле.наобходимо для правильного заполнения ALTER TABLE
                 if($f_name_buffer=='')$f_name_buffer='name';
@@ -275,7 +277,15 @@ class Ava {
     private function printBlock($s){
         echo "<h2>".$s."</h2>";
     }
-    private function printElm($s){
-        echo "<p>".$s."</p>";
+    private function printElm($s,$h=false){
+        if(is_array($s)){
+            if($h) echo "<b>[".$h." /]</b>";
+            echo "<pre>";
+            print_r($s);
+            echo "</pre>";
+            if($h) echo "<b>[/".$h."]</b>";
+        }
+        else
+            echo "<p>".$s."</p>";
     }    
 }
