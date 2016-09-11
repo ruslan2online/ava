@@ -127,7 +127,7 @@ class Ava {
     }
 
     //добавляет в таблицы новые поля, если они появятся в конфиге. Старые пока не удаляются
-    private function updateTables() {
+    private function updateTables() { 
       echo "<b>Добавление колонок в таблицы.</b>";
         //$system_tables_array=array('id','parent','ord','check_active','check_end','name');
     	foreach($this->main_config['modules'] as $k=>$v) {
