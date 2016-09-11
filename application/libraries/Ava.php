@@ -15,8 +15,13 @@ class Ava {
 
 	public function Init() {
  
+        $this->printBlock("Создание таблиц:");
         $this->createTables();
+        
+        $this->printBlock("Добавление новых полей в таблицы:");
         $this->updateTables();
+        
+        $this->printBlock("Создание системных таблиц авторизации, если отсутствуют");
         $this->createAuthTables(); //создаем таблицы для auth_ion
     }
 
@@ -102,7 +107,8 @@ class Ava {
 				) ENGINE=MyISAM DEFAULT CHARSET=utf8;";	  
     		
     		//echo "<br>".$strCreateQuery;
-    		$this->CI->db->query($strCreateQuery);	
+    		$this->CI->db->query($strCreateQuery);
+            $this->printElm($strCreateQuery);	
     	}
         //создаем таблицу для картинок
         $strCreateQuery="CREATE TABLE IF NOT EXISTS `".$this->tbl_prefix."files` (
@@ -116,7 +122,8 @@ class Ava {
                   KEY `parent` (`uid`)
                 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
             ";
-        $this->CI->db->query($strCreateQuery);    
+        $this->CI->db->query($strCreateQuery);
+        $this->printElm($strCreateQuery);    
     }
 
     //добавляет в таблицы новые поля, если они появятся в конфиге. Старые пока не удаляются
@@ -146,7 +153,11 @@ class Ava {
                 //echo "<br>".$strAlterQuery;
                 $this->CI->db->query($strAlterQuery); 
 
-                echo "<br>Добавлено ".count($arrAlterQuery)." колонок в таблицу " .$this->tbl_prefix.$k; 
+                $this->printElm("Добавлено ".count($arrAlterQuery)." колонок в таблицу " .$this->tbl_prefix.$k); 
+                $this->printElm($strAlterQuery);
+            }
+            else{
+                 $this->printElm("Изменений не найдено!");
             }
         }
         
@@ -260,5 +271,11 @@ class Ava {
     public function show($obj){
         if(is_array($obj))$obj=print_r($obj,true);
         file_put_contents($_SERVER['DOCUMENT_ROOT'].'/show.txt',$obj);
-    }  
+    }
+    private function printBlock($s){
+        echo "<h2>".$s."</h2>";
+    }
+    private function printElm($s){
+        echo "<p>".$s."</p>";
+    }    
 }

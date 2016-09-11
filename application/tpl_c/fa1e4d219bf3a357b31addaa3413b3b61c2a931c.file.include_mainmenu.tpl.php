@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-07-12 11:49:41
+<?php /* Smarty version Smarty-3.1.18, created on 2016-09-11 14:12:01
          compiled from "application\tpl\admin\include_mainmenu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:151245784a1152b2ff6-71464911%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fa1e4d219bf3a357b31addaa3413b3b61c2a931c' => 
     array (
       0 => 'application\\tpl\\admin\\include_mainmenu.tpl',
-      1 => 1459942167,
+      1 => 1473511849,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5784a1152df819_09308356',
   'variables' => 
   array (
     'data' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'v' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5784a1152df819_09308356',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5784a1152df819_09308356')) {function content_5784a1152df819_09308356($_smarty_tpl) {?><nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -35,7 +35,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="http://www.avalab.ru" target="_blank">AVA CMS</a>
+			<a class="navbar-brand" href="http://www.avalab.ru" target="_blank">AVA CMS 7</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->

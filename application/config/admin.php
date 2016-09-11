@@ -42,7 +42,10 @@ $config['ava::modules'] = array(
 		),		
 	"pages"=>array(
 		"title" => "Страницы",
-		"fields" => array(			
+		"fields" => array(
+			"url" => array(				
+				"title"=>"URL",
+				),			
 			"desc" => array(
 				"type"=>"wysiwyg",
 				"length" => "200",
