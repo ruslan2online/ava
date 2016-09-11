@@ -3,17 +3,17 @@
 
 class Ava {
 
-	public $tbl_prefix='ava_';
-	public $CI;
-	public $main_config;
+    public $tbl_prefix='ava_';
+    public $CI;
+    public $main_config;
 
-	public function __construct() {
-		$this->CI =& get_instance();
-		$this->CI->config->load('admin');
-		$this->main_config['modules'] = $this->CI->config->item('ava::modules');	
-	}
+    public function __construct() {
+        $this->CI =& get_instance();
+        $this->CI->config->load('admin');
+        $this->main_config['modules'] = $this->CI->config->item('ava::modules');    
+    }
 
-	public function Init() {
+    public function Init() {
  
         $this->printBlock("Создание таблиц:");
         $this->createTables();
@@ -83,33 +83,33 @@ class Ava {
     }
 
     private function createTables() {       
-    	foreach($this->main_config['modules'] as $k=>$v) {
-    		$strCreateQuery="
+        foreach($this->main_config['modules'] as $k=>$v) {
+            $strCreateQuery="
                 CREATE TABLE IF NOT EXISTS `".$this->tbl_prefix.$k."` (
-				  `id` int(11) unsigned NOT NULL auto_increment,
-				  `parent` int(11) unsigned NOT NULL default '0',
-				  `ord` int(11) unsigned NOT NULL default '0',
-				  `check_active` tinyint(1) unsigned NOT NULL default '1',
-				  `check_end` tinyint(1) unsigned NOT NULL default '0',
+                  `id` int(11) unsigned NOT NULL auto_increment,
+                  `parent` int(11) unsigned NOT NULL default '0',
+                  `ord` int(11) unsigned NOT NULL default '0',
+                  `check_active` tinyint(1) unsigned NOT NULL default '1',
+                  `check_end` tinyint(1) unsigned NOT NULL default '0',
                   `meta_t`  varchar(255) NOT NULL default '',
                   `meta_d`  TEXT NOT NULL default '',
                   `meta_k`  varchar(255) NOT NULL default '',
                   `time_created`  DATETIME,
                   `time_updated`  DATETIME,
-				  `name` varchar(255) NOT NULL default '',";
+                  `name` varchar(255) NOT NULL default '',";
 
-			foreach($v['fields'] as $f_name=>$f) {
-				$strCreateQuery.="`".$f_name."` ".$this->convert2sqlFieldType($f)." ,";	
-			}
+            foreach($v['fields'] as $f_name=>$f) {
+                $strCreateQuery.="`".$f_name."` ".$this->convert2sqlFieldType($f)." ,"; 
+            }
 
-			$strCreateQuery.="PRIMARY KEY  (`id`),
-				  KEY `parent` (`parent`)
-				) ENGINE=MyISAM DEFAULT CHARSET=utf8;";	  
-    		
-    		//echo "<br>".$strCreateQuery;
-    		$this->CI->db->query($strCreateQuery);
-            $this->printElm($strCreateQuery);	
-    	}
+            $strCreateQuery.="PRIMARY KEY  (`id`),
+                  KEY `parent` (`parent`)
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";   
+            
+            //echo "<br>".$strCreateQuery;
+            $this->CI->db->query($strCreateQuery);
+            $this->printElm($strCreateQuery);   
+        }
         //создаем таблицу для картинок
         $strCreateQuery="CREATE TABLE IF NOT EXISTS `".$this->tbl_prefix."files` (
             `id` int(11) unsigned NOT NULL auto_increment,
@@ -130,7 +130,7 @@ class Ava {
     private function updateTables() { 
       echo "<b>Добавление колонок в таблицы.</b>";
         //$system_tables_array=array('id','parent','ord','check_active','check_end','name');
-    	foreach($this->main_config['modules'] as $k=>$v) {
+        foreach($this->main_config['modules'] as $k=>$v) {
             $arrAlterQuery=array(); //массив sql полей на добавление
             //вытаскиваем список существующиз полей этого модуля в БД
             $q=$this->CI->db->query("SHOW FIELDS FROM `".$this->tbl_prefix.$k."`");
@@ -233,23 +233,23 @@ class Ava {
     }
 
     private function convert2sqlFieldType($field) {
-    	if(!isset($field["type"])) {
-    		$field["type"]='text';
-    	}
-    	switch($field["type"]) {
-    		case "text":
-    		    return "varchar(".(isset($field['length'])?(int)$field['length']:"255").") NOT NULL default ''";                
-    		case "textarea":
-    		    return "text NOT NULL default ''"; 
+        if(!isset($field["type"])) {
+            $field["type"]='text';
+        }
+        switch($field["type"]) {
+            case "text":
+                return "varchar(".(isset($field['length'])?(int)$field['length']:"255").") NOT NULL default ''";                
+            case "textarea":
+                return "text NOT NULL default ''"; 
         case "wysiwyg":
             return "text NOT NULL default ''";                  
-    		case "img":
-    		    return "varchar(255) NOT NULL default ''";
+            case "img":
+                return "varchar(255) NOT NULL default ''";
             case "check":
                 return "INT NOT NULL default '0'";
-    		default: 
-    		    return "varchar(255) NOT NULL default ''";
-    	}
+            default: 
+                return "varchar(255) NOT NULL default ''";
+        }
     } 
 
     public function getMainConfig() {
